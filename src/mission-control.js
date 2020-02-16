@@ -29,6 +29,9 @@ class Mission {
 
   moveRobots(inputMovement) {
     let activeRobot = this.robots.find(robot => robot.active === true);
+    if(inputMovement.split('').some(command=>command!=="L" && command!=="R" && command!=="F")){
+      activeRobot.unknownCommandEntered = true
+    }
     inputMovement.split('').forEach(command => {
       if (activeRobot.lost === true) {
         if(activeRobot.x > this.marsGrid.maxX)activeRobot.x -= 1
@@ -44,7 +47,7 @@ class Mission {
       if (command === "L" || command === "R") {
         activeRobot.rotate(command);
       }
-      if (command === "F") {
+      else if (command === "F") {
         activeRobot.move();
         this.robots.forEach(robot=>{
           if(robot.lastScent.active){
@@ -62,8 +65,13 @@ class Mission {
         }
       }
       
+      
       activeRobot.active = false;
-      return activeRobot.getFinalPos();
+      if(this.unknownCommandEntered){
+        return `Unknown command skipped. ${activeRobot.getFinalPos()}`;
+      }else{
+        return activeRobot.getFinalPos()
+      }
     });
   }
 }

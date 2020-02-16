@@ -22,6 +22,10 @@ class Robot {
     };
     this.active = true;
     this.lost = false
+    this.unknownCommandEntered = false
+
+    
+   
   }
 
   rotate(to) {
@@ -33,7 +37,9 @@ class Robot {
     this.y = this.y + this.moveDic[this.orientation]['y'];
   }
 
- 
+  
+  
+
 
   getFinalPos() {
     if (this.lost===false){

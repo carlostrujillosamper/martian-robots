@@ -108,6 +108,19 @@ describe('Martian Robots',()=>{
 
   })
 
+  it('should skip command if unknown command was included in input',()=>{
+    const mission = new Mission()
+    mission.setMarsGrid('5 3')
+    mission.initRobot('1 1 E')
+    mission.moveRobots('JJJJJJ')
+
+    expect(
+      mission.robots[0].unknownCommandEntered
+    ).to.eql(
+      true
+    )
+  })
+
   it('should correctly move multiple robots based on commands',()=>{
     const mission = new Mission()
     mission.setMarsGrid('5 3')
