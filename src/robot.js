@@ -38,11 +38,11 @@ class Robot {
   }
 
   
-  
+
 
 
   getFinalPos() {
-    if (this.lost===false){
+    if (!this.lost){
     return `${this.x} ${this.y} ${this.orientation}`;
     }else{
       return `${this.x} ${this.y} ${this.orientation} LOST`
