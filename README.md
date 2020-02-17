@@ -8,7 +8,7 @@ npm install
 npm test
 ```
 
-**Dependencies used **
+**Dependencies used**
 ```
 1 - Babel
 2 - Mocha
